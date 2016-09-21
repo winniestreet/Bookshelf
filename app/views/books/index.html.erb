@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Books</h1>
+
+  <body>
+    <div class="row bookcard">
+        <div class="col s12 m6 offset-s6 offset-m3">
+          <% @books.each do |book| %>
+          <div class="card">
+            <div class="card-image">
+              <%= image_tag book.cover, style:"width: 500px; height: auto;" %>
+              <span class="card-title" ><%= book.name %></span>
+            </div>
+            <div class="card-content">
+            <p><%= book.author %></p>
+            <p>Uploaded by:<%= book.user.email %></p>
+
+            <p><%= rating_for book, 'book' %></p>
+            <p>
+              <%= link_to 'Edit', edit_book_path(book) %>
+              <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </p>
+            </div>
+          </div>
+          <% end %>
+        </div>
+    </div>
+  <body>
+
+
+<%= link_to 'New Book', new_book_path %>
